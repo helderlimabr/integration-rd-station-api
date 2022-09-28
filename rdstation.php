@@ -4,14 +4,24 @@ require_once "Connection.php";
 
 $con = new Connection();
 
+
+/*
 $email = $_POST["email"] ?? "";
 $price = $_POST["price"] ?? "";
-$tag = $_POST["tag"] ?? "";
+$tag = $_POST["tag"] ?? "";*/
 $tags = [];
+
+
+$email = 'helder.fl@hotmail.com';
+$tag = 'add_car';
+
+//echo 'aqui';die;
 
 if ($tag) {
     array_push($tags, $tag);
 }
+
+
 
 if ($email && $tag) {
     $contact = $con->get_contact($email);

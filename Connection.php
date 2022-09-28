@@ -109,6 +109,9 @@ class Connection
         ];
 
         $exec = Connection::exec($url, $request, $header);
+
+        var_dump($exec);die;
+
         return $exec;
     }
 
@@ -119,7 +122,7 @@ class Connection
         $array_tags = ["tags" => $tags];
         $data = json_encode($array_tags);
         $url = $config["host"] . "/platform/contacts/email:" . $email;
-        $request = "PATCH";
+        $request = "POST";
         $header = [
             'Authorization: Bearer ' . $config["access_token"],
             'Content-Type: application/json'

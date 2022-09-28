@@ -22,7 +22,7 @@
                     </div>
                     <div class="col-md-12">
                         <label for="tag" class="form-label">Tag</label>
-                        <input type="text" class="form-control" id="tag" placeholder="Tag">
+                        <input type="text" class="form-control" id="tag" name="tag" placeholder="Tag">
                     </div>
                     <div class="col-md-12">
                         <label for="price" class="form-label">Price</label>
@@ -32,7 +32,9 @@
                         <button type="submit" class="btn btn-primary">Enviar</button>
                     </div>
                     <br>
-                    <textarea name="" id="res" cols="20" rows="9" disabled></textarea>
+                    <div class="col-12">
+                        <span name="" id="res"></span>
+                    </div>
                 </form>
             </div>
             <div class="col"></div>
