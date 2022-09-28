@@ -62,7 +62,7 @@ class Connection
         $exec = Connection::exec($url, $request, $header, $data);
 
         if (!$exec["errors"]) {
-            $stmt = $this->pdo->prepare("UPDATE CONFIG SET access_token = :access_token, refresh_token = :refresh_token, code = :code;");
+            $stmt = $this->pdo->prepare("UPDATE config SET access_token = :access_token, refresh_token = :refresh_token, code = :code;");
             $stmt->bindValue(":access_token", $exec["access_token"]);
             $stmt->bindValue(":refresh_token", $exec["refresh_token"]);
             $stmt->bindValue(":code", $code);
