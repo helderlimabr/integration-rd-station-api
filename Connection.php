@@ -20,12 +20,7 @@ class Connection
 
     function exec($url, $request, $header, $data = "")
     {
-
-        //var_dump($url, $request, $header, $data);die;
-
         $curl = curl_init();
-
-
         $opts = array(
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_FOLLOWLOCATION => true,
@@ -37,11 +32,8 @@ class Connection
         curl_setopt_array($curl, $opts);
 
         $return = curl_exec($curl);
-        var_dump(curl_exec($curl));die;
         curl_close($curl);
         return json_decode($return, TRUE);
-
-
     }
 
     function config()
