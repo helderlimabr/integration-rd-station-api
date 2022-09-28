@@ -22,6 +22,7 @@ class Connection
     {
         $curl = curl_init();
         $opts = array(
+            CURLOPT_URL => $url,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
