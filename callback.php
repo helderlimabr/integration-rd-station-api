@@ -4,7 +4,7 @@ include_once "Connection.php";
 
 $con = new Connection();
 
-if ($GET['code'] ?? '') {
+if (isset($_GET['code'])) {
     $auth = $con->auth($_GET["code"]);
 
     if ($auth["errors"] || !$auth["access_token"]) {
