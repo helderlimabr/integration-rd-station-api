@@ -67,8 +67,6 @@ class Connection
             $stmt->bindValue(":refresh_token", $exec["refresh_token"]);
             $stmt->bindValue(":code", $code);
 
-            var_dump($stmt);die;
-
             $stmt->execute();
         }
 
