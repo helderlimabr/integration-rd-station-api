@@ -8,7 +8,7 @@
         echo "<h1>É preciso criar uma um APP na plataforma RD Station.</h1>";
         exit();
     } else if (!$config['access_token'] || !$config['refresh_token']) {
-        echo "<a href='https://api.rd.services/auth/dialog?client_id=" . $config['client_id'] . "&redirect_uri=" . $config['callback'] . "'>Click aqui para autenticar</a>";
+        echo "<a href='https://api.rd.services/auth/dialog?client_id=" . $config['client_id'] . "&redirect_uri=" . $config['app'] . "'>Click aqui para autenticar</a>";
     } else {
         ?>
         <div class="row">
