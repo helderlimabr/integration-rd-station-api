@@ -6,7 +6,7 @@ $con = new Connection();
 
 if (isset($_GET['code'])) {
     $auth = $con->auth($_GET["code"]);
-
+    var_dump($auth["errors"]);die;
     if ($auth["errors"] || !$auth["access_token"]) {
         echo "Erro de Autenticação. Tente Novamente";
     } else {
