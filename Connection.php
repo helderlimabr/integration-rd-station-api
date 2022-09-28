@@ -21,24 +21,25 @@ class Connection
     function exec($url, $request, $header, $data = "")
     {
 
+        //var_dump($url, $request, $header, $data);die;
+
         $curl = curl_init();
 
-        curl_setopt_array(
-            $curl,
-            [
-                CURLOPT_URL => $url,
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => $request,
-                CURLOPT_POSTFIELDS => $data,
-                CURLOPT_HTTPHEADER => $header
-            ]
-        );
+
+        $opts = array(
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => $request,
+            CURLOPT_POSTFIELDS => $data,
+            CURLOPT_HTTPHEADER => $header);
+
+        curl_setopt_array($curl, $opts);
 
         $return = curl_exec($curl);
+        var_dump(curl_exec($curl));die;
         curl_close($curl);
-        return json_decode($return, true);
+        return json_decode($return, TRUE);
 
 
     }
@@ -61,6 +62,8 @@ class Connection
 
         $data = json_encode($data);
         $url = $config["host"] . "auth/token";
+
+
         $request = "POST";
         $header = ["Content-Type: application/json"];
 
@@ -71,7 +74,10 @@ class Connection
             $stmt->bindValue(":access_token", $exec["access_token"]);
             $stmt->bindValue(":refresh_token", $exec["refresh_token"]);
             $stmt->bindValue(":code", $code);
-            $run = $stmt->execute();
+
+            var_dump($stmt);die;
+
+            $stmt->execute();
         }
 
         return $exec;
