@@ -1,5 +1,6 @@
 <?php
 
+require_once 'Config.php';
 
 class Connection
 {
@@ -8,6 +9,13 @@ class Connection
 
     function __construct()
     {
+        try {
+            $this->pdo = new PDO('mysql:host=' . Config::$host . ';dbname=' . Config::$db, Config::$user, Config::$pass);
+        } catch (PDOException $e) {
+            print "Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+
     }
 
     function exec($url, $request, $header, $data = "")
