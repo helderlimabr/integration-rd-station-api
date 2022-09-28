@@ -1,36 +1,44 @@
-<!doctype html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="src/css/bootstrap.min.css">
-    <script src="src/js/jquery-3.6.1.js"></script>
-    <script>
-        $(function () {
-            $("#cadastro").on("submit", function (e) {
-                e.preventDefault();
-                $.post("cadastro.php", $("#cadastro").serialize(),
-                    function (data) {
-                        $("#res").html(data);
-                    }
-                )
-            })
-        })
-    </script>
-    <title>RD Station</title>
-</head>
-<body>
+<?php require_once "header.php"; ?>
+<div class="container text-center">
+    <div>
+        <img class="img-fluid img-nav" src="src/img/rd.png" alt="RD Station Marketing">
+    </div>
     <?php
-        include_once 'Connection.php';
-        $con = new Connection();
-        $config = $con->config();
-
-
+    if (!$config['client_id'] || !$config['client_secret'] || !$config['callback']) {
+        echo "<h1>É preciso criar uma um APP na plataforma RD Station.</h1>";
+        exit();
+    } else if (!$config['access_token'] || !$config['refresh_token']) {
+        echo "<a href='https://api.rd.services/auth/dialog?client_id=" . $config['client_id'] . "&redirect_uri=" . $config['app'] . "'>Click aqui para autenticar</a>";
+    } else {
+        ?>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <form id="cadastro" class="row g-3">
+                    <div class="col-md-12">
+                        <label for="inputEmail" class="form-label left">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" id="inputEmail"
+                               placeholder="Email">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="tag" class="form-label">Tag</label>
+                        <input type="text" class="form-control" id="tag" placeholder="Tag">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="text" id="price" name="price" class="form-control" id="price" placeholder="Price">
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                    <br>
+                    <textarea name="" id="res" cols="20" rows="9" disabled></textarea>
+                </form>
+            </div>
+            <div class="col"></div>
+        </div>
+        <?php
+    }
     ?>
-<script src="src/js/bootstrap.bundle.min.js"></script>
-<script src="src/js/popper.min.js"></script>
-<script src="src/js/bootstrap.min.js"></script>
-</body>
-</html>
+</div>
+<?php require_once "footer.php"; ?>

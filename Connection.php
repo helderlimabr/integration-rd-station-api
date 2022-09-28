@@ -5,7 +5,7 @@ require_once 'Config.php';
 class Connection
 {
 
-    public $pdo;
+    protected $pdo;
 
     function __construct()
     {
@@ -45,9 +45,8 @@ class Connection
 
     function config()
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM CONFIG;");
-        $run = $stmt->execute();
-
+        $stmt = $this->pdo->prepare("SELECT * FROM config;");
+        $stmt->execute();
         $rs = $stmt->fetch(PDO::FETCH_ASSOC);
         return $rs;
     }
