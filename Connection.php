@@ -55,7 +55,6 @@ class Connection
         $data = json_encode($data);
         $url = $config["host"] . "auth/token";
 
-
         $request = "POST";
         $header = ["Content-Type: application/json"];
 
@@ -66,7 +65,6 @@ class Connection
             $stmt->bindValue(":access_token", $exec["access_token"]);
             $stmt->bindValue(":refresh_token", $exec["refresh_token"]);
             $stmt->bindValue(":code", $code);
-
             $stmt->execute();
         }
 
@@ -90,7 +88,7 @@ class Connection
         $exec = Connection::exec($url, $request, $header, $data);
 
         if (!$exec["errors"]) {
-            $stmt = $this->pdo->prepare("UPDATE CONFIG SET access_token = :access_token, refresh_token = :refresh_token;");
+            $stmt = $this->pdo->prepare("UPDATE config SET access_token = :access_token, refresh_token = :refresh_token;");
             $stmt->bindValue(":access_token", $exec["access_token"]);
             $stmt->bindValue(":refresh_token", $exec["refresh_token"]);
             $run = $stmt->execute();
