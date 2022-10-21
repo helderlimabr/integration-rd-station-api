@@ -13,4 +13,6 @@ if (isset($_GET['code'])) {
         $config = $con->config();
         header("Location:" . $config["app"]);
     }
-}
+} else {
+    echo '<h1>Nenhuma informação a ser exibida.</h1>';
+};
