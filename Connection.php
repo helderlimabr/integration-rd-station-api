@@ -39,7 +39,7 @@ class Connection
 
     function config()
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM config where id = 3;");
+        $stmt = $this->pdo->prepare("SELECT * FROM config where id = 4;");
         $stmt->execute();
         $rs = $stmt->fetch(PDO::FETCH_ASSOC);
         return $rs;
